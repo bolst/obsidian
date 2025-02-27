@@ -79,6 +79,7 @@ Also for the address space
 
 ### Process Termination
 
+Once a process executes its last statement, it asks the operating system to delete it using the `exit()` system call. This returns the status data from the child to parent (via `wait()`) and its resources are deallocated by the OS.
 
 
 ## Interprocess Communication

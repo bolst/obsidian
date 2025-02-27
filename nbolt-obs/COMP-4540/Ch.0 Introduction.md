@@ -72,6 +72,7 @@ The **worst-case time complexity** for an input size is taken as the maximum tim
 $$
 T_{worst}(n) = \max{\{t(I)|I\in D_n\}}
 $$
+
 where $D_n$ is the set of all inputs of size $n$ for the problem and $t(I)$ is the number of key operations performed by the algorithm on an input $I\in D_n$.
 
 ### Average-Case Time Complexity
@@ -81,6 +82,7 @@ The **average-case time complexity** for an input size is taken as the average t
 $$
 T_{ave}(n) = \sum_{I\in D_n}p(I)t(I)
 $$
+
 where $p(I)$ is the probability $I$ occurs.
 
 ### Example: Sequential Search
