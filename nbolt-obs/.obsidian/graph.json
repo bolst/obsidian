@@ -1,0 +1,37 @@
+{
+  "collapse-filter": true,
+  "search": "",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": true,
+  "colorGroups": [
+    {
+      "query": "path:COMP-3250  ",
+      "color": {
+        "a": 1,
+        "rgb": 14734418
+      }
+    },
+    {
+      "query": "path:COMP-4540  ",
+      "color": {
+        "a": 1,
+        "rgb": 14701138
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": false,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 0.713818181818182,
+  "lineSizeMultiplier": 3.49018181818182,
+  "collapse-forces": false,
+  "centerStrength": 0.465380333951763,
+  "repelStrength": 10.030426716141,
+  "linkStrength": 1,
+  "linkDistance": 143,
+  "scale": 0.9882355672056508,
+  "close": true
+}
