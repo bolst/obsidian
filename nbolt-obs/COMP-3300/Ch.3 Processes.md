@@ -81,6 +81,8 @@ Also for the address space
 
 Once a process executes its last statement, it asks the operating system to delete it using the `exit()` system call. This returns the status data from the child to parent (via `wait()`) and its resources are deallocated by the OS.
 
+The parent can also terminate the execution of child processes with `abort()`. This may happen because the child has exceeded allocated resources, the task is no longer required, etc.
+
 
 ## Interprocess Communication
 

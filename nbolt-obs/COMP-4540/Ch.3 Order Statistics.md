@@ -144,3 +144,48 @@ Output: kth smallest element in L
 
 
 ## 3.5 Reduction
+
+
+Reduction is a technique that transforms one problem into another so that a solution to the latter provides a solution to the former. It is frequently used in relating the difficulty of one problem to another and for deriving lower bounds.
+
+### Definition: Problem Instance
+
+Let $\Pi$ be a computational problem. A **problem instance** of $\Pi$ is an input to any algorithm that solves $\Pi$.
+
+
+### Definition: Reducible
+
+Let $\Pi_1, \Pi_2$ be two computational problems. We say $\Pi_1$ is **reducible** to $\Pi_2$ if
+- there exists an algorithm $A_\pi$ that transforms any problem instance $\pi_1$ of $\Pi_1$ to a problem instance $\pi_2$ of $\Pi_2$
+- there exists an algorithm $A_S$ that transforms any solution $s_2$ of $\Pi_2$ to a solution $s_2$ of $\Pi_1$.
+
+>For example, consider the problem of multiplying two numbers.
+>Multiplication is reducible to addition, since we can apply the algorithm for logarithms ($A_\pi$) on both numbers, add the results, and then apply the algorithm for inverse logarithms ($A_S$) to get the multiplied answer.
+
+
+### Lemma 3.6
+
+>[!lemma|3.6] 
+>
+>Let $\Pi_1,\Pi_2$ be two computational problems such that $\Pi_1$ is $\tau(n)$-transformable to $\Pi_2$. If problem $\Pi_2$ can be solved in $O(T_2(n))$ time, then problem $\Pi_1$ can be solved in $O(T_2(n) + \tau(n))$ time
+
+^ee6581
+
+`\begin{proof}`
+The following algorithm solves problem $\Pi_1$:
+1. Given a problem instance $\pi_1$ of $\Pi_1$, transform $\pi_1$ into a problem instance $\pi_2$ of $\Pi_2$.
+2. Present $\pi_2$ as an input of $O(T_2(n))$-time algorithm that solves $\Pi_2$. The algorithm outputs the solution $S_2$.
+3. Transform $S_2$ to $S_1$, a solution for $\Pi_1$ on input $\pi_1$.
+
+Steps 1,3 take $O(\tau(n))$ time. Step 2 takes $O(T_2(n))$ time. The algorithm thus takes $O(T_2(n))+O(\tau(n))=O(T_2(n)+\tau(n))$ time.
+`\end{proof}`
+
+### Theorem 3.7 (lower-bound)
+
+> [!theorem|3.7] Lower bound
+> 
+> Let $\Pi_1,\Pi_2$ be two computational problems such that $\Pi_1$ is $\tau(n)$-transformable to $\Pi_2$. If it is known that $\Omega(T_1(n))$ is a lower bound on time complexity for solving problem $\Pi_1$ such that $\tau(n)\ \in o(T_1(n))$. Then $\Omega(T_1(n))$ is a lower bound on time complexity for solving problem $\Pi_2$.
+
+`\begin{proof}`
+By [[#^ee6581]], there exists an algorithm that solves problem $\Pi_1$ in $o(T_1(n))+O(\tau(n))=o(T_1(n))$ time. This contradicts the assumption that $\Omega(T_1(n))$ is a lower bound for $\Pi_1$.
+`\end{proof}`

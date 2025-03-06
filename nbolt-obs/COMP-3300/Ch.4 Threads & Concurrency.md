@@ -52,6 +52,52 @@ This is similar to [[#Many-to-Many|many-to-many]] except it allows a user thread
 
 ### Java Threads
 
+Java Threads are managed by the JVM.
+
+They are created by either (1) extending the `Thread` class, or (2) implementing the `Runnable` interface (more standard).
+
+```java
+public interface Runnable
+{
+	public abstract void run();
+}
+```
+
+```java
+// Implementing Runnable
+class Task implements Runnable
+{
+	public void run()
+	{
+		System.out.println("I am a thread");
+	}
+}
+
+// Creating a thread
+Thread worker = new Thread(new Task());
+worker.start();
+
+// Waiting on a thread
+try
+{
+	worker.join();
+}
+catch (InterruptedException ie) { }
+```
+
+Instead of explicitly creating threads, Java also allows thread creation around the `Executor` interface
+
+```java
+public interface Executor
+{
+	void execute(Runnable command);
+}
+```
+
+```java
+Executor service = new Executor();
+service.execute(new Task()); // Task implements Runnable
+```
 
 ## Implicit Threading
 

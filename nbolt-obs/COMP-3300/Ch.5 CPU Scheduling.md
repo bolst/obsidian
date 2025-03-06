@@ -133,7 +133,7 @@ Typically this leads to a higher average turnaround than [[#Shortest-Job-First (
 
 
 ### Priority Scheduling
-
+ 
 A priority number gets associated with each process. The CPU is allocated to the process with the highest priority (smallest number ~ highest priority).
 
 [[#Shortest-Job-First (SJF) Scheduling|SJF]] is a special case of Priority Scheduling where the priority is the inverse of the predicted next CPU burst time.
@@ -245,7 +245,7 @@ Here we allocate $T$ shares among all the processes in the system. An applicatio
 
 
 ### POSIX Real-Time Scheduling
-
+ 
 The POSIX API defines two scheduling classes for real-time threads:
 1. `SCHED_FIFO` - threads are scheduled using [[#First-Come, First-Served Scheduling|FCFS]] strategy with a FIFO queue. There is no time-slicing for threads of equal priority
 2. `SCHED_RR` - similar to `SCHED_FIFO` except time-slicing occurs for threads of equal priority
