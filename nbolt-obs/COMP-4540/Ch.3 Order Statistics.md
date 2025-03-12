@@ -1,6 +1,6 @@
 [[_Design and Analysis of Computer Algorithms]]
 
-### Problem Definition
+# Problem definition
 
 Given a list of $n$ elements from a totally ordered set, find the $k^\text{th}$ ($1\leq k\leq n$) smallest element in the list.
 
@@ -13,7 +13,7 @@ A question that this chapter will answer is: Can we do better than the $\Theta(n
 1. Without a loss of generality, assume all elements are distinct
 2. $x\succ y \implies$ $x$ is the ***winner*** and $y$ is the ***loser***.
 
-### 3.1 Finding the Second Largest element
+# 3.1 Finding the second largest element
 
 ```python
 Algorithm Second-Largest-1
@@ -35,7 +35,7 @@ We thus have
 In total, $(n-1)+(n-2)=2n-3$ comparisons.
 
 
-## 3.2 Lower Bound
+# 3.2 Lower Bound
 
 ### Adversary
 
@@ -49,7 +49,7 @@ E.g., "Is the month in the winter?" leaves 3 possible months if yes but 9 if no.
 > Given any algorithm to solve that problem, whenever a key operation is made in the algorithm, the adversary will force the outcome of the operation to be one that would allow it to discard the least number of elements from the pool.
 > In a sense, the adversary forces any algorithm solving that problem to do as much work as possible. If it could force *any* algorithm to perform at least $f(n)$ key operations, then $f(n)$ is a lower bound for the given problem.
 
-### An Adversary Argument
+### An adversary argument
 
 Let $\mathcal{A}$ be any algorithm for finding the second largest element. Let $t_j$ be the number of elements which loses $j$ or more comparisons in executing $\mathcal A$. Then the total number of comparisons performed by $\mathcal A$ is
 $$
@@ -76,9 +76,7 @@ Moreover, when the algorithm halts, its answer is correct iff $w(max)=n; w(x)=0,
 Since $w(max)$ increases its value every time *max* wins a comparison, to maximize the value of $k$ is the same as to make $w(max)$ grow as slow as possible.
 
 
-------
-
-## 3.4 Finding the kth Smallest
+# 3.4 Finding the kth Smallest
 
 We have shown that finding the min, max, and second-largest of a list of $n$ elements can all be done in $\Theta(n)$ time and space. These are just special cases of "finding the kth-smallest" problem.
 
@@ -143,12 +141,12 @@ Output: kth smallest element in L
 ```
 
 
-## 3.5 Reduction
+# 3.5 Reduction
 
 
 Reduction is a technique that transforms one problem into another so that a solution to the latter provides a solution to the former. It is frequently used in relating the difficulty of one problem to another and for deriving lower bounds.
 
-### Definition: Problem Instance
+### Definition: Problem instance
 
 Let $\Pi$ be a computational problem. A **problem instance** of $\Pi$ is an input to any algorithm that solves $\Pi$.
 
