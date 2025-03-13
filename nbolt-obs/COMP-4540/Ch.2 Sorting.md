@@ -363,3 +363,153 @@ So therefore $T(n) = \Theta(n \lg n) + \Theta(n \lg n) + \Theta(n) = \Theta(n \l
 
 # 2.6 Heapsort
 
+A heap is a binary tree in which:
+1. Every level must be completely filled except for the lowest level, which is filled left-to-right
+2. Every node contains an element drawn from a totally ordered set $(S,\leq)$ which is greater than or equal to the elements stored at its children (this is the heap property).
+
+```mermaid
+graph TD
+	50 --> 24
+	50 --> 30
+	24 --> 20
+	24 --> 21
+```
+
+
+From this we can derive the following.
+
+> [!lemma|2.11]
+> Every subtree of a heap is a heap
+
+> [!lemma|2.12]
+> The root node of a heap contains the largest element in the heap
+
+> [!lemma|2.13]
+> The height of a heap of $n$ nodes is $\lfloor \lg n \rfloor$
+
+^812d47
+
+Lemmas 2.11 and 2.12 are obvious. We can prove Lemma 2.13 below.
+`\begin{proof}`
+Recall the number of nodes in a complete binary tree of height $k$ is $2^{k+1}-1$.
+
+Let $h$ be the height of a heap of $n$ nodes. Then $n$ is greater than the number of nodes in a complete binary tree of height $h-1$ and is less than or equal to the number of nodes in a complete binary tree of height $h$.
+
+$$
+\begin{align}
+& 2^{(h-1) + 1}-1 < n \leq 2^{h+1} - 1  \\
+& \implies 2^h \leq n < 2^{h+1} \\
+& \implies h \leq \lg n < h + 1 \\
+& \implies h = \lfloor \lg n \rfloor 
+\end{align}
+$$
+`\end{proof}`
+
+> [!remark|*]
+> The level of a vertex $v$ in a rooted tree is
+> $$ level(v) = \begin{cases} 0 & \text{if } v \text{ is the root} \\ level(f(v)) + 1 & \text{otherwise} \end{cases} $$
+> Where $f(v)$ is the parent of $v$ in the tree
+
+
+## FixHeap
+
+Consider a binary tree $T$ which has the heap structure and the left and right subtrees of the roots are heaps, but the element stored in the root may violate the heap property.
+
+Operation **FixHeap** rearranges the elements in $T$ such that the heap property is restored and the heap structure is maintained (i.e., it rearranges $T$ into a heap).
+
+```python
+Algorithm FixHeap
+Method: Filter the element stored in the root, K, downward until it reaches a node where the heap property is satisfied.
+begin
+	while K is not a leaf do
+		if K is greater than or equal to both of its children then
+			exit
+		else
+			swap K with the larger of its children
+end.
+```
+
+
+### Correctness
+
+> [!lemma|2.14]
+> [[Ch.2 Sorting#FixHeap|FixHeap]] correctly converts $T$ into a heap.
+
+`\begin{proof}`
+First note that [[Ch.2 Sorting#FixHeap|FixHeap]] does not destroy the heap structure. At any time, only the node that contains $K$ may violate the heap property.
+
+Since $K$ is filtering down the binary tree, it would eventually either reach a node at which the heap property is satisfied or reaches a leaf. In either case, the tree $T$ becomes a heap.
+`\end{proof}`
+
+
+### Time complexity
+
+> [!lemma|2.15]
+> Operation [[Ch.2 Sorting#FixHeap|FixHeap]] does at most $2*h_{T}$ comparisons, where $h_{T}$ is the height of $T$.
+
+^ac5d36
+
+`\begin{proof}`
+$K$ is filtering down the tree implies that the while loop is iterated at most $h_{T}$ times. In each iteration, at most two comparisons are performed: one for determining the larger of the two children, and one for comparing $K$ with the larger of the two.
+`\end{proof}`
+
+
+## Building a heap
+
+The problem here is defined as "Given a list of $n$ elements, construct a heap containing the $n$ elements". The method to solve this is described below.
+
+Put the elements into a binary tree of $n$ nodes, $T$, which has the heap structure. Since every leaf in $T$ is a heap, we can convert $T$ into a heap in a bottom-up manner by repeatedly using [[Ch.2 Sorting#FixHeap|FixHeap]].
+
+### Procedure BuildHeap
+
+```python
+Procedure BuildHeap(T)
+1. Build a binary tree of n nodes, T, which has the heap structure and store the n elements into T
+2. for l := height(T) - 1 to 0 do
+	   for each subtree T0 rooted at level l do FixHeap(T0)
+```
+
+> [!lemma|2.17]
+> Procedure [[Ch.2 Sorting#Procedure BuildHeap|BuildHeap]] takes $O(n)$ time to construct the heap $T$.
+
+`\begin{proof}`
+Step 1 takes $O(n)$ time.
+
+For each node on level $l$, the binary tree rooted at that node has height at most $h_{T}-l=\lfloor \lg n \rfloor - l$ ([[#^812d47|Lemma 2.13]]).
+
+By [[#^ac5d36|Lemma 2.15]], Procedure [[Ch.2 Sorting#FixHeap|FixHeap]] takes at most $2\left( \lfloor \lg n \rfloor - l \right)$ time to convert the subtree rooted at that node into a heap.
+
+Since there are at most $2^l$ nodes on level $l$, the total time required to build the heap $T$ is thus at most
+$$
+\begin{align}
+\sum_{l=0}^{h_{T}-1} 2^l \times 2(\lfloor \lg n \rfloor -l) &= 2 \sum_{l=0}^{\lfloor \lg n \rfloor } 2^l(\lfloor \lg n \rfloor - l) \\
+&= 2 \sum_{l=0}^{\lfloor \lg n \rfloor} \frac{2^{\lfloor \lg n \rfloor }}{2^{\lfloor \lg n \rfloor - l}} (\lfloor \lg n \rfloor - l) \\
+&\leq  2 \sum_{l=0}^{\lfloor \lg n \rfloor} \frac{n}{2^{\lfloor \lg n \rfloor - l}} (\lfloor \lg n \rfloor - l) \\
+&= 2n \sum_{h=0}^{\lfloor \lg n \rfloor } \frac{h}{2^h} & (h := \lfloor \lg n \rfloor - l) \\
+&\leq 2n \sum_{h=0}^{\infty} h \left( \frac{1}{2} \right)^h \\
+&= 4n = O(n)
+\end{align}
+$$
+`\end{proof}`
+
+
+## Algorithm Heapsort
+
+```python
+Algorithm Heapsort
+Input: A list L[1 ... n] drawn from a totally ordered set (S, <=)
+begin
+	Use BuildHeap(T) to construct a heap T that contains the elements in L
+	do
+		Output the element in the root of T
+		Move the rightmost leaf at the lowest level into the root
+		Let T be the resulting tree
+		# at this point we have a binary tree T with the heap structure
+		# the two subtrees of the root are also heaps
+		# the root, however, may violate the heap property
+		Call FixHeap(T) to convert T into a heap
+	while (T has more than one node)
+	Output the root element
+end.
+```
+
