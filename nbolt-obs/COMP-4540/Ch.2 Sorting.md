@@ -274,3 +274,92 @@ This leads to a result of $T_{ave}(n) = \Theta(n \lg n)$.
 
 Mergesort works by continually dividing a list into half, sorting each smaller list, and then merging the resulting lists for the result.
 
+
+## Algorithm Mergesort
+
+```python
+Algorithm Mergesort(L, lower, upper)
+Input: L[lower ... upper]
+Output: L[lower ... upper] sorted in ascending order
+begin
+	if lower < upper then
+		mid = floor( (lower + upper) / 2 )
+		Mergesort(L, lower, mid)
+		Mergesort(L, mid + 1, upper)
+		Merge L[lower ... mid] and L[mid + 1 ... upper] into L[lower ... upper]
+end.
+
+==================
+
+Algorithm Merge
+Input: Two sorted lists A[1 ... m] and B[1 ... n]
+Output: A sorted list C[1 ... m+n] which contains all the elements of A and B
+begin
+	indexA, indexB, indexC := 1
+	while indexA <= m and indexB <= n do
+		if A[indexA] < B[indexB] then
+			C[indexC] := A[indexA]
+			indexA := indexA + 1
+		else
+			C[indexC] := B[indexB]
+			indexB := indexB + 1
+		indexC := indexC + 1
+		
+	if indexA > m then
+		copy B[indexB ... n] into C[indexC ... m+n]
+	else
+		copy A[indexA ... m] into C[indexC ... m+n]
+end.
+```
+
+
+### Correctness
+
+> [!lemma|2.8]
+> Algorithm [[Ch.2 Sorting#Algorithm Mergesort|Merge]] correctly merges the two sorted lists.
+
+`\begin{proof}`
+Use induction on $i$ to prove that the $i$th element moved into the output list is the $i$th smallest element in the combined list.
+`\end{proof}`
+
+> [!lemma|2.9]
+> Merging two sorted lists of sizes m, n respectively, requires at most $m + n - 1$ comparisons.
+
+`\begin{proof}`
+Every comparison moves one element to the output list except for the last comparison, which moves two or more elements to the output list. Once an element is moved to the output list, it will not be compared again. Since there are a total of $m+n$ elements, it thus takes at most $m+n-1$ comparisons to merge the sorted lists.
+`\end{proof}`
+
+> [!theorem|2.10]
+> Algorithm [[Ch.2 Sorting#Algorithm Mergesort|Mergesort]] correctly sorts the given $n$ elements in ascending order.
+
+`\begin{proof}`
+(By induction on $n$).
+`\end{proof}`
+
+### Time complexity
+
+Note that the key operation is the comparison of two items.
+#### Worst-case
+
+Let $T(n)$ be the time required to sort a list of $n$ elements with Mergesort. Then we have
+
+$$
+T(n) = \begin{cases}
+T\left( \left\lfloor  \frac{n}{2}  \right\rfloor  \right) + T\left( \left\lceil  \frac{n}{2}  \right\rceil \right) + (n-1)  & n>1 \\
+0 & n \leq 1
+\end{cases}
+$$
+Let $T_{\lfloor  \rfloor}(n) = 2T\left( \left\lfloor  \frac{n}{2}  \right\rfloor \right) + (n-1)$ and $T_{\lceil  \rceil}(n) = 2T\left( \left\lceil  \frac{n}{2}  \right\rceil \right) + (n-1)$, note that $T(n)=T_{\lfloor  \rfloor}(n) + T_{\lceil  \rceil}(n)$.
+
+We can use the [[Ch.1 Searching an Ordered List#Master theorem|Master Theorem]] to solve this recurrence, since we have $n^{\log_{b}(a)}=n$ and $f(n) = n-1 = \Theta(n) = \Theta(n^{\log_{b}a}\lg n) = \Theta(n\lg n)$.
+
+$$
+\implies T_{\lfloor  \rfloor }(n), T_{\lceil  \rceil}(n) = \Theta(n\lg n)
+$$
+
+So therefore $T(n) = \Theta(n \lg n) + \Theta(n \lg n) + \Theta(n) = \Theta(n \lg n)$.
+`\end{proof}`
+
+
+# 2.6 Heapsort
+

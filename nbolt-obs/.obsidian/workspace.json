@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "70278b1d8c152be7",
+        "id": "df80ddf53018b7e7",
         "type": "tabs",
         "children": [
           {
-            "id": "90f6d19fe64b242f",
+            "id": "cf18b62596e04685",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -180,10 +180,11 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "90f6d19fe64b242f",
+  "active": "78d3671fd003bd9d",
   "lastOpenFiles": [
-    "Untitled.md",
+    "COMP-4540/Ch.1 Searching an Ordered List.md",
     "COMP-4540/Ch.2 Sorting.md",
+    "Untitled.md",
     "COMP-4540/Midterm 2 Review.md",
     "COMP-4540/Ch.3 Order Statistics.md",
     "COMP-4540/Midterm 1.md",
@@ -193,7 +194,6 @@
     "optimization problems.md",
     "COMP-4540/_Design and Analysis of Computer Algorithms.md",
     "COMP-4540/Ch.0 Introduction.md",
-    "COMP-4540/Ch.1 Searching an Ordered List.md",
     "COMP-3300/Midterm 1 Review.md",
     "COMP-3300/Ch.5 CPU Scheduling.md",
     "COMP-3300/Ch.4 Threads & Concurrency.md",
