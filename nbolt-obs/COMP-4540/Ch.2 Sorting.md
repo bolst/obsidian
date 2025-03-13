@@ -384,6 +384,8 @@ From this we can derive the following.
 > [!lemma|2.12]
 > The root node of a heap contains the largest element in the heap
 
+^ab9173
+
 > [!lemma|2.13]
 > The height of a heap of $n$ nodes is $\lfloor \lg n \rfloor$
 
@@ -435,6 +437,8 @@ end.
 > [!lemma|2.14]
 > [[Ch.2 Sorting#FixHeap|FixHeap]] correctly converts $T$ into a heap.
 
+^81b771
+
 `\begin{proof}`
 First note that [[Ch.2 Sorting#FixHeap|FixHeap]] does not destroy the heap structure. At any time, only the node that contains $K$ may violate the heap property.
 
@@ -472,6 +476,8 @@ Procedure BuildHeap(T)
 > [!lemma|2.17]
 > Procedure [[Ch.2 Sorting#Procedure BuildHeap|BuildHeap]] takes $O(n)$ time to construct the heap $T$.
 
+^fd9802
+
 `\begin{proof}`
 Step 1 takes $O(n)$ time.
 
@@ -503,6 +509,7 @@ begin
 	do
 		Output the element in the root of T
 		Move the rightmost leaf at the lowest level into the root
+		Delete the leaf
 		Let T be the resulting tree
 		# at this point we have a binary tree T with the heap structure
 		# the two subtrees of the root are also heaps
@@ -512,4 +519,97 @@ begin
 	Output the root element
 end.
 ```
+
+
+> [!exercise|*]
+> Sort the sequence $\langle 1,2,4,10,9,3,8,7,16,14 \rangle$. The output of `BuildHeap(T)` is
+> ```mermaid
+> flowchart TD
+> 	16 --> 14
+> 	14 --> 8
+> 	8 --> 2
+> 	8 --> 4
+> 	14 --> 7
+> 	7 --> 1
+> 	16 --> 10
+> 	10 --> 9
+> 	10 --> 3
+>``` 
+
+
+### Correctness
+
+> [!theorem|2.18]
+> Algorithm [[Ch.2 Sorting#Algorithm Heapsort|Heapsort]] correctly sorts the $n$ elements
+
+`\begin{proof}`
+Apply mathematical induction on $i$ to prove at the beginning of the $i$th iteration, $T$ is a heap, and that the element outputted during the $i$th iteration is the $i$th largest element in the list.
+
+**(Induction Basis)** When $n=1$ obviously our list is already sorted.
+
+**(Induction Hypothesis)** Suppose [[Ch.2 Sorting#Algorithm Heapsort|Heapsort]] correctly sorts all input lists of length $<n$ for $n \geq 2$.
+
+**(Induction Step)** We know [[Ch.2 Sorting#Procedure BuildHeap|BuildHeap]] correctly builds a heap, so by [[#^ab9173]] the largest element in the list is outputted. This element is no longer needed since its rank is determined, so swapping and discarding it with the lowest-level, rightmost element in $T$ is valid. The resulting tree has size $n-1$. 
+
+By [[#^81b771]] we know that calling [[Ch.2 Sorting#FixHeap|FixHeap]] converts $T$ into a valid heap. So $T$ is converted into a valid heap, and then the process is repeated until there is only one node left, in which the induction basis applies. 
+
+Explicitly, the process is repeated for increasing $i$ where $1\leq i < n$, and after each iteration $i$ the number of nodes in $T$ is $n-i$. The last iteration yields $n - (n-1) = 1$.
+`\end{proof}`
+
+### Time complexity
+
+
+> [!theorem|2.19]
+> Algorithm [[Ch.2 Sorting#Algorithm Heapsort|Heapsort]] sorts the $n$ elements in $O(n \lg n)$ time.
+
+`\begin{proof}`
+Step 1 (building the heap) takes $O(n)$ time ([[#^fd9802]]).
+
+The execution time of the body of the `do while` loop dominated by that of `FixHeap(T)`. Since the number of nodes in $T$ is $\leq n$ at any time, by [[#^ac5d36]], each iteration of the `do while` loop takes $O(2^{h_{T}+1}-1) = O(\lg n)$ time.
+
+Since the `do while` loop repeats $n-1$ times, the total time is $O(n \lg n)$.
+`\end{proof}`
+
+# 2.7 Lower bound
+
+In any sorting algorithm where the *comparison of two elements* is the key operation, we are allowed to only use comparison to gain information about the input sequence. Consequentially, we can ignore all other operations and view the algorithm as a [[Ch.2 Supervised Learning#Decision Trees|decision tree]].
+
+We can assume without a loss of generality that all elements in the input sequence are distinct. As a consequence, comparing two elements $a_{i}, a_{j}$ yields either $a_{i} < a_{j}$ or $a_{i} > a_{j}$.
+
+The decision tree for a sorting algorithm and an input size $n$ is a binary tree where
+- the root corresponds to the first comparison performed by the algorithm
+- each internal node corresponds to an instruction comparing two elements $a_{i}, a_{j}$, $1 \leq i, j \leq n$ from the input sequence.
+  The left child corresponds to the comparison performed next if $a_{i} < a_{j}$, and the right child vice versa.
+- each leaf node corresponds to a [[Ch.2 Sorting#Definition Permutation|permutation]] $\pi$ of $\{ 1,2,3,\dots,n \}$ such that $a_{\pi(i)} < a_{\pi(i+1)}, 1\leq i \leq n$.
+
+For example, the decision tree for insertion sort when $n=3$ is ($(i:j) \sim a_{i}$ compared with $a_{j}$).
+
+```mermaid
+flowchart TD
+	id1(1:2) --> id2(2:3)
+	id2 --> id3(1 2 3)
+	id2 --> id4(1:3)
+	id4 --> id5(1 3 2)
+	id4 --> id6(3 1 2)
+	id1 --> id7(1:3)
+	id7 --> id8(2 1 3)
+	id7 --> id9(2:3)
+	id9 --> id10(2 3 1)
+	id9 --> id11(3 2 1)
+```
+
+
+# Summary
+
+
+|                  | Insertion Sort |     Quicksort     |     Mergesort     |     Heapsort      |
+| ---------------- |:--------------:|:-----------------:|:-----------------:|:-----------------:|
+| **Worst-case**   |    $O(n^2)$    |    $O(n^{2})$     | $\Theta(n \lg n)$ | $\Theta(n \lg n)$ |
+| **Average-case** |   $O(n^{2})$   | $\Theta(n \lg n)$ | $\Theta(n \lg n)$ | $\Theta(n \lg n)$ |
+| **Space**        |     $O(n)$     |      $O(n)$       |      $O(n)$       |      $O(n)$       |
+| **In-place**     |      yes       |        no         |        no         |        no         |
+
+In particular, Quicksort
+1. is the most commonly used sorting algorithm in practice
+2. works well even in virtual memory environments
 

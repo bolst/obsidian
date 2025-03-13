@@ -163,7 +163,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -180,10 +180,11 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "78d3671fd003bd9d",
+  "active": "a2a48d9989aec04a",
   "lastOpenFiles": [
-    "COMP-4540/Ch.1 Searching an Ordered List.md",
+    "COMP-3250/Ch.2 Supervised Learning.md",
     "COMP-4540/Ch.2 Sorting.md",
+    "COMP-4540/Ch.1 Searching an Ordered List.md",
     "Untitled.md",
     "COMP-4540/Midterm 2 Review.md",
     "COMP-4540/Ch.3 Order Statistics.md",
@@ -201,7 +202,6 @@
     "COMP-3300/Ch.1 Introduction.md",
     "COMP-3300/Ch.3 Processes.md",
     "COMP-3300/Ch.2 Operating System Services.md",
-    "COMP-3250/Ch.2 Supervised Learning.md",
     "^5b32c3.md",
     "circumstances 1 and 4.md",
     "COMP-3300/_Operating System Fundamentals.md",
