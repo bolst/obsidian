@@ -99,11 +99,17 @@ Therefore the number of elements in a heap of height $h$ is bounded by $2^h \leq
 > [!exercise]
 > Show that the worst-case running time of [[Ch.2 Sorting#Algorithm Heapsort|FixHeap]] on a heap of size $n$ is $\Omega (\lg n)$ (solution available).
 
-Let $K$ be the element in the root. In the worst case, $K$ will traverse each level in the heap $T$.
+We know that a heap of height $h$ has $2^h \leq n \leq 2^{h+1}-1$ elements. Consider the two cases where $n$ is on the lower and upper bound:
 
-We know that a heap of height $h$ has $n=2^{h+1}-1$ elements, so inverting for $h$ gives $h=\lg (n+1) - 1$. Since the maximum number of nodes $K$ will traverse is all the levels in $T$, i.e., the height $h$, it will traverse at most $\lg(n+1)-1$ times.
+**Case 1:** $n$ is on the lower bound
+Then $n=2^h \implies h=\lg n$.
+In this case, the worst case would be if the root element of the tree inputted to FixHeap was traversed all the way to the bottom of the tree, i.e., it traversed $h$ times. So in this case FixHeap runs in $\Omega (\lg n)$ time.
 
-Therefore the worst case running time of FixHeap is $\Omega(\lg n)$.
+**Case 2**: $n$ is on the upper bound
+Then $n=2^{h+1}-1 \implies h=\lg(n+1) - 1$.
+This is similar to case 1, so FixHeap runs in $\Omega (\lg(n+1)-1)=\Omega(\lg n)$ time.
+
+Thus, both bounds yield $\Omega (\lg n)$ time, so FixHeap must run in $\Omega (\lg n)$ time for the worst-case always.
 `\end{proof}`
 
 
@@ -111,6 +117,16 @@ Therefore the worst case running time of FixHeap is $\Omega(\lg n)$.
 
 > [!exercise]
 > Show that there are at most $\lceil n/2^{h+1} \rceil$ nodes of height $h$ in any $n$-element heap (solution available).
+
+`\begin{proof}`
+(By induction on the height $h$).
+
+**(Induction basis)** For $h=0$, we must show there are $\lceil n/2^{h+1} \rceil = \lceil n/2 \rceil$ nodes with height $0$.
+
+
+
+`\end{proof}`
+
 
 
 ### 6.4-4
