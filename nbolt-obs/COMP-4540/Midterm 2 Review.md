@@ -8,6 +8,57 @@
 
 # Exercises
 
+
+## Assignment 2
+
+### 2.1
+
+> [!exercise]
+> Given a set of $n$ points $p_{1},p_{2},\dots,p_{n}$ on a horizontal straight line with associated $x$-coordinates $x_{1},x_{2},\dots,x_{n}$ and associated weights $w_{1},w_{2},\dots,w_{n}$ such that $\sum w_{i}=1$, the objective is to find the point $p$ on the line such that $\sum_{i=1}^{n} |x_{p} - x_{i}|w_{i}$ is minimum, where $x_{p}$ is the $x$-coordinate of $p$.
+> (a) Prove that the sum $\sum_{i=1}^{n} |x_{p} - x_{i}|w_{i}$ is minimum at point $p$ where $p$ is such that $\sum_{x_{i} < x_{p}} w_{i} < \frac{1}{2}$ and $\sum_{x_{i} > x_{p}}w_{i} \leq \frac{1}{2}$.
+> (b) Present an algorithm to find the point $p$ that minimizes $\sum_{i=1}^n |x_{p} - x_{i}| w_i$ in $O(n)$ time.
+
+(b)
+
+```python
+Algorithm MinWeightedDistance(x,w)
+Input: Lists of coordinates x[1 ... n] and weights w[1 ... n]
+Output: p that minimizes sum( |x[p] - x[i]| * w[i])
+begin
+	if n = 1 then
+		return 1
+	else if n = 2 then
+		if w[1] >= w[2] then return 1
+		else return 2
+	else
+		m := floor(n/2)
+		median := Select(x,m)
+		lowsum := sum of all elements w[i] in w where x[i] < median
+		highsum := sum of all elements w[i] in w where x[i] > median
+		if lowsum < 1/2 and highsum <= 1.2 then
+			return m
+		else if highsum > 1/2 then
+			w[m] := w[m] + lowsum
+			partition x to only contain elements >= median
+			partition w to contain elements corresponding to partitioned x
+			return MinWeightedDistance(x,w)
+		else # if lowsum > 1/2
+			w[m] := w[m] + highsum
+			partition x to only contain elements <= median
+			partition w to contain elements corresponding to partitioned x
+			return MinWeightedDistance(x,w)
+end.
+```
+
+#### Correctness
+
+
+
+#### Time complexity
+
+
+
+
 ## Misc
 
 ### $O(n)$ min/max
@@ -241,12 +292,28 @@ Now the entire proof is satisfied for $i=n$.
 Based on [[#^42fa29]] (when $i=k$), we know that the number of elements in the range $[0,j]$ in $L$ is stored in $C_{j}$ for $0 \leq j \leq k$. So based off set differences, we know that the number of elements in the range $[a,b]$ is equal to $[a,b] = [0,b] - [0,a-1] = C_{b} - C_{a-1}$.
 
 
+#### Time complexity
+
+The preprocessing is done in the first two for loops.
+
+The first for loop contains assignment ($O(1)$) and iterates over $1 \dots n$. So this takes $\sum_{i=1}^{n} 1 = n$ time steps.
+
+The second for loop contains assignment and iterates over $1 \dots k$. So this takes $\sum_{i=1}^{k}1 = k$ time steps.
+
+Thus the preprocessing runs in $O(n+k)$ or $\Theta(n+k)$ time (since there is no best or worst case scenario).
+
+Finally, since the query is just array lookup with a given index, it runs in $O(1)$ time.
+`\end{proof}`
+
+
 ## Order Statistics
+
 
 ### 9.3-7
 
 > [!exercise]
 > Describe an $O(n)$-time algorithm that, given a set $S$ of $n$ distinct numbers and a positive integer $k \leq n$, determines the $k$ numbers in $S$ that are closest to the median of $S$.
+
 
 
 
