@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "COMP-3300/Ch.8 Deadlocks.md",
+                "file": "COMP-3300/Ch.5 CPU Scheduling.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Ch.8 Deadlocks"
+              "title": "Ch.5 CPU Scheduling"
             }
           }
         ],
@@ -143,13 +143,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "COMP-3300/Ch.8 Deadlocks.md",
+                "file": "COMP-3300/Ch.5 CPU Scheduling.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Ch.8 Deadlocks"
+              "title": "Outline of Ch.5 CPU Scheduling"
             }
           },
           {
@@ -183,14 +183,14 @@
   },
   "active": "effc443772a91472",
   "lastOpenFiles": [
+    "COMP-3300/Ch.6 Synchronization Tools.md",
     "COMP-3300/Ch.5 CPU Scheduling.md",
+    "COMP-3300/Quiz 1.md",
     "COMP-3300/Ch.8 Deadlocks.md",
     "images/rag-nodeadlock.png",
     "images/rag-deadlock.png",
     "images",
     "COMP-3300/Ch.7 Synchronization Examples.md",
-    "COMP-3300/Ch.6 Synchronization Tools.md",
-    "COMP-3300/Quiz 1.md",
     "COMP-3300/Midterm 1 Review.md",
     "COMP-3300/_Operating System Fundamentals.md",
     "COMP-4540/_Design and Analysis of Computer Algorithms.md",
