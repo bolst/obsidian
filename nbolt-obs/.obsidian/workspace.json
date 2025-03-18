@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "COMP-3300/Ch.6 Synchronization Tools.md",
+                "file": "COMP-3300/Ch.8 Deadlocks.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Ch.6 Synchronization Tools"
+              "title": "Ch.8 Deadlocks"
             }
           }
         ],
@@ -79,8 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "b53097b1d98735c9",
@@ -144,13 +143,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "COMP-3300/Ch.6 Synchronization Tools.md",
+                "file": "COMP-3300/Ch.8 Deadlocks.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Ch.6 Synchronization Tools"
+              "title": "Outline of Ch.8 Deadlocks"
             }
           },
           {
@@ -168,7 +167,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -183,10 +183,13 @@
   },
   "active": "effc443772a91472",
   "lastOpenFiles": [
-    "COMP-3300/Ch.6 Synchronization Tools.md",
-    "COMP-3300/Ch.8 Deadlocks.md",
-    "COMP-3300/Ch.7 Synchronization Examples.md",
     "COMP-3300/Ch.5 CPU Scheduling.md",
+    "COMP-3300/Ch.8 Deadlocks.md",
+    "images/rag-nodeadlock.png",
+    "images/rag-deadlock.png",
+    "images",
+    "COMP-3300/Ch.7 Synchronization Examples.md",
+    "COMP-3300/Ch.6 Synchronization Tools.md",
     "COMP-3300/Quiz 1.md",
     "COMP-3300/Midterm 1 Review.md",
     "COMP-3300/_Operating System Fundamentals.md",
@@ -208,7 +211,6 @@
     "COMP-3300/Ch.1 Introduction.md",
     "COMP-3300/Ch.3 Processes.md",
     "COMP-3300/Ch.2 Operating System Services.md",
-    "^5b32c3.md",
     "COMP-3300",
     "Untitled.canvas",
     "COMP-3250",
