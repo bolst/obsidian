@@ -158,7 +158,3 @@ Let $n$ be the number of processes and $n$ be the number of resource types
 4. If `Finish[i] == true` for all $i$, then system is in safe state
 
 # Deadlock detection
-
-
-
-(detection algorithm, recovery from deadlock, resource preemption)
