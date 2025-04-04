@@ -4,3 +4,4 @@
 3. [[Ch.2 Sorting]]
 4. [[Ch.3 Order Statistics]]
 5. [[Ch.5 Advanced Design Techniques]]
+6. [[Ch.6 Graph Algorithms]]

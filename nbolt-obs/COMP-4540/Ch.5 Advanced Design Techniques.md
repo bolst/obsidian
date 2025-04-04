@@ -301,7 +301,7 @@ To construct the optimal tour, we keep, for each $cost(v_{i}, S)$, the index $k$
 5. Finally returns to $v_{1}$
 
 
-#### Time Complexity
+#### Time complexity
 
 The total time complexity is equivalent to the time required to compute $cost(v_{i}, S), \forall v_{i} \in V - \{  v_{1} \}$ and the time required to compute $cost(v_{1}, V - \{ v_{1} \})$.
 
@@ -330,7 +330,286 @@ $$
 Finally, the time required to compute $cost(v_{1}, V - \{ v_{1} \})$ is $O(n)$. The total time complexity is thus $O(2^n n^2)$.
 
 
-## 5.1.4 k-approximation string matching
+# 5.2 Greedy Algorithms
+
+A greedy algorithm for an optimization problem goes through a sequence of steps and makes a choice at each step so as to arrive at an *optimal* solution.
+
+In each step, there are a number of choices to make and the greedy algorithm always makes a *locally optimal choice* (greedy choice) hoping that the choice will lead to a *globally optimal solution*. 
 
 
+### 5.2.1 Coin changing
 
+> [!definition|*] Problem
+> Given $n$ cents, make change for the cents using the smallest number of (Canadian) coins (quarters, dimes, nickels, pennies).
+
+Method: repeatedly select the largest-denomination coin that is not larger than the amount still owed (i.e., a greedy choice).
+
+#### Algorithm: GreedyChange
+
+```python
+Algorithm GreedyChange
+Input: n cents
+Output: q quarters, d dimes, f nickels, p pennies such that 25q + 10d + 5f + p = n, and q + d + f + p is the minimum among all solutions of the equations.
+begin
+	q := n // 25
+	n := n % 25
+	
+	d := d // 10
+	n := d % 10
+	
+	f = n // 5
+	
+	p := n % 5
+end
+```
+
+##### Correctness
+
+> [!lemma|*]
+> Algorithm GreedyChange makes a change of $n$ cents using the minimum number of coins.
+
+`\begin{proof}`
+Suppose in the optimal change, $q,d,f,p$ quarters, dimes, nickels and pennies are (respectively) used.
+
+If $p \geq 5$, then by replacing 5 pennies with 1 nickel, we obtain a change of $n$ cents, using less number of coins (a contradiction!). Therefore $p \leq 4$.
+
+If $f \geq 2$, then by replacing 2 nickels with 1 dime, we obtain a change of $n$ cents, using less number of coins (a contradiction!). Therefore $f \leq 1$.
+
+If $d \geq 3$, then by replacing 3 dimes with 1 quarter and 1 nickel, we obtain a change of $n$ cents, using less number of coins (a contradiction!). Therefore $d \leq 2$.
+
+However, if $d = 2$, then $f=0$, for otherwise, replacing 2 dimes and 1 nickel with 1 quarter gives rise to a change using less coins (a contradiction!).
+
+Hence, either $d=2, f=0$ and $p \leq 4$, or $d \leq 1, f \leq 1$ and $p \leq 4$.
+This immediately implies that in the optimal change, the coins which are not quarter could give rises to a sum of at most
+$$
+2 \times 10 \textcent + 0 \times 5\textcent + 4 \times 1\textcent = 24\textcent
+$$
+We thus have $n = q \times 25\textcent + n'$ where $n' \leq 24 \textcent$.
+
+It follows that $q = \lfloor n / 25 \rfloor$. The remaining amount of change is $n' = n \bmod 25$.
+
+Since $f \leq 1$ and $p \leq 4$, in the optimal change for $n'$, the coins which are not dimes can give rises to a sum of at most 
+$$
+1 \times 5\textcent + 4 \times 1\textcent = 9 \textcent
+$$
+So, $n' = d \times 10\textcent + n''$ where $n'' \leq 9 \textcent$.
+
+It follows that $d = \lfloor n' / 10 \rfloor$. The remaining amount of change is $n'' = n' \bmod 10$.
+
+Since $p \leq 4$, in the optimal change for $n''$, the coins which are not nickels can give rises to a sum of at most
+$$
+4 \times 1\textcent = 4\textcent
+$$
+
+So, $n'' = f \times 5\textcent + n'''$ where $n''' \leq 4\textcent$.
+
+It follows that $f = \lfloor n'' / 5 \rfloor$. The remaining amount of change is $n''' = n'' \bmod 5$.
+Obviously $p=n'''$. Hence, Algorithm GreedyChange makes an optimal change of $n$ cents using the minimum number of coins.
+`\end{proof}`
+
+### 5.2.2 Huffman codes
+
+
+### 5.2.3 Single source shortest paths
+
+> [!definition|*] Problem
+> Given a weighted directed graph $G = (V,E,w)$ in which every edge $e \in E$ has a non-negative weight $w(e)$ and a source vertex $s$, compute the shortest path from $s$ to all other vertices in the graph.
+
+
+#### Dijkstra's algorithm
+
+$\forall u \in V$, 
+$$
+\begin{align}
+
+d[u]&: \text{the current estimate for the shortest-path length from } s \text{ to } v. \\
+\delta(s,u)&: \text{the length of a shortest path from } s \text{ to } u.
+\end{align}
+$$
+Initially, $d[u] = \infty, u \in V - \{ s \}$ and $d[s] = 0$.
+During execution, $d[u] \geq \delta(s,u)$. When execution terminates, $d[u] = \delta(s,u)$.
+
+**Key idea:** 
+$S (\subseteq V):$ a set of vertices whose shortest-path lengths from $s$ have been determined. Starting from $S = \emptyset$, repeatedly select a vertex $u \in V - S$ that has the smallest $d[u]$ value (the greedy choice), add $u$ to $S$, and update $d[v]$ for every $v \in V-S$ that is adjacent to $u$.
+
+Maintain a min-priority queue $Q$ with $d[\cdot]$ as the key to keep $V-S$ so that the vertex $u$ can be retrieved rapidly.
+
+```python
+Dijkstras Algorithm
+Input: A weighted directed graph G = (V,E,w) with non-negative edge weights, and a source vertex s
+Output: d[v]: the shortest-path length from s to v (for all v in V).
+begin
+	d[s] := 0
+	for each v in (V - {s}) do
+		d[v] := ∞
+	Q := V
+	while len(Q) != 0 do
+		u := extractMin(Q)
+		for each (u,v) in E do
+			d[v] := min{ d[v], d[u] + w(u,v) }
+end
+```
+
+
+##### Correctness
+
+Let $l(P)$ denote the length of path $P$.
+Let $\delta(u,v)$ denote the length of a *shortest path* from $u$ to $v$.
+
+> [!lemma|1]
+> let $P: u_{1} u_{2} \dots u_{h}$ be a shortest path from $u_{1}$ to $u_{h}$. For $1 \leq i < j \leq h$, the sub-path $p_{ij}: u_{i} u_{i+1} \dots u_{j-1} u_{j}$ of $P$ is a shortest-path from $u_{i}$ to $u_{j}$.
+
+`\begin{proof}`
+Vertices $u_{i},u_{j}$ decompose $P$ into sub-paths $p_{1i}, p_{ij}$ and $p_{jh}$:
+$$
+u_{1} \stackrel{p_{1i}}{ \to } u_{i} \stackrel{p_{ij}}{ \to } u_{j} \stackrel{p_{jh}}{ \to } u_{h}
+$$
+Then $\delta(u_{1}, u_{h}) = l(p_{1i}) + l(p_{ij}) + l(p_{jh})$. Suppose $p_{ij}$ is not a shortest path from $u_{i}$ to $u_{j}$.
+Let $p'_{ij}$ be a path from $u_{i}$ to $u_{j}$ such that $l(p'_{ij}) < l(p_{ij})$.
+
+Then $u_{1} \stackrel{p_{1i}}{ \to } u_{i} \stackrel{p_{ij}}{ \to } u_{j} \stackrel{p_{jh}}{ \to } u_{h}$ is a path from $u_{1}$ to $u_{h}$ whose length is $l(p_{1i}) + l(p'_{ij}) + l(p_{jh})$.
+Then
+$$
+\begin{align}
+&l(p'_{ij}) < l(p_{ij}) \\
+&\implies l(p_{1i}) + l(p'_{ij}) + l(p_{jh}) < l(P_{1i}) + l(P_{ij}) + l(P_{ji}) \\
+&\implies l(p_{1i}) + l(p'_{ij}) + l(p_{jh}) < \delta(u_{1}, u_{h}) \\
+&\implies P \text{ is not a shortest path from } u_{1} \text{ to } u_{h} \text{ (a contradiction!)}
+\end{align}
+$$
+`\end{proof}`
+
+> [!lemma|2]
+> Let $v \in V$. Then $\delta(s,v) \leq \delta(s,u) + \delta(u,v), \forall u \in V - \{ v \}$.
+
+^b0f6a4
+
+`\begin{proof}`
+(By contradiction).
+Suppose $\exists u \in V - \{  v \}$ such that $\delta(s,v) > \delta(s,u) + \delta(u,v)$. Then, there is a path from $s$ to $v$ passing through $u$ whose length is shorter than that of any shortest path from $s$ to $v$ (a contradiction!).
+`\end{proof}`
+
+> [!lemma|3]
+> $\forall v \in V, d[v] \geq \delta(s,v)$ during an execution of Dijkstra's algorithm.
+
+^1bf015
+
+`\begin{proof}`
+(By induction on the number of times the instruction `d[v] := min{ d[v], d[u] + w(u,v) }` is executed).
+(Basis) Initially $d[v] = \infty \implies d[v] \geq \delta(s,v), \forall v \in V$.
+
+(Hypothesis) Suppose after the instruction is executed for $h-1$ times, $\forall v \in V, d[v] \geq \delta(s,v)$.
+
+(Step) When the instruction is executed for the $h$th time, if $d[v] < d[u] + w(u,v)$, then $d[v] := \min \{ \dots \} \implies d[v]$ remains unchanged. By the induction hypothesis, $d[v] \geq \delta(s,v)$.
+
+If $d[v] \geq d[u] + w(u,v) \cdots (A)$
+by [[#^b0f6a4]], $\delta(s,v) \leq \delta(s,u) + \delta(u,v) \cdots (I)$.
+By the induction hypothesis, $d[u] \geq \delta(s,u) \cdots (II)$.
+Moreover, $w(u,v) \geq \delta(u,v)$, as the edge $(u,v)$ is a $u-v$ path $\cdots (III)$.
+We thus have:
+$$
+\begin{align}
+\delta(s,v) &\leq d[u] + \delta(u,v) & \text{ (by (I), (II))} \\
+\implies \delta(s,v) &\leq d[u] + w(u,v) & \text{ (by (III))} \\
+\implies \delta(s,v) &\leq d[v] & \text{ (by (A))}
+\end{align}
+$$
+
+`\end{proof}`
+
+> [!theorem|4]
+> When Dijkstra's algorithm terminates execution, $d[u] = \delta(s,u), \forall u \in V$.
+
+`\begin{proof}`
+(By contradiction).
+Suppose $\exists v \in V, d[v] \neq \delta(s,v)$ when execution of Dijkstra's algorithm terminates. Then, by [[#^1bf015]], $d[v] > \delta(s,v)$.
+
+Since $d[v]$ remains unchanged after vertex $v$ was removed from $Q$, $d[v] > \delta(s,v)$ when $v$ was removed from $Q$.
+
+Let $z$ be the first vertex such that $d[z] > \delta(s,z)$ when $z$ was to be removed from $Q$.
+
+Let $P_{z}: (s=) u_{1}u_{2} \dots u_{h} (=z)$ be a shortest path from $s$ to $z$. Consider the iteration of the while loop where $z$ was to be removed from $Q$. 
+
+Let $u_{k}$ be the vertex with the smallest index on $P_{z}$ that had *not* been removed from $Q$.
+
+Then $u_{i}, 1 \leq i < k$ had been removed from $Q \implies P_{z}: (s=)u_{1}u_{2}\dots u_{k-1}u_{k} \dots u_{h} (=z)$.
+
+(i) $k=h$.
+Then $u_{h-1}$ had been removed from $Q \implies d[u_{h-1}] = \delta(s, u_{h-1})$.
+During the iteration of the while loop when $u_{h-1}$ was removed from $Q$, the edge $(u_{h-1}, u_{h}) = (u_{h-1}, z)$ was processed within the for each loop, resulting in
+$$
+\begin{align}
+&d[z] \leq d[u_{h-1}] + w(u_{h-1}, z) \\
+&\implies d[z] \leq \delta(s, u_{h-1}) + w(u_{h-1}, z) \\
+&\implies \delta(s, u_{h-1}) + w(u_{h-1},z) = \delta(s,z) \\
+&\implies d[z] \leq \delta(s,z) & \text{ (a contradiction!)}
+\end{align}
+$$
+
+(ii) $k < h$
+Then $u_{k-1}$ has been removed from $Q \implies d[u_{k-1}] = \delta(s, u_{k-1})$.
+During the iteration of the while loop where $u_{k-1}$ was removed from $Q$, the edge $(u_{k-1},u_{k})$ was processed within the for each loop, resulting in
+$$
+\begin{align}
+d[u_{k}] &\leq d[u_{k-1}] + w(u_{k-1}, u_{k}) \\
+&= \delta(s,u_{k-1}) + w(u_{k-1}, u_{k})
+\end{align}
+$$
+$P_{z}$ is a shortest path from $s$ to $z$
+$$
+\begin{align}
+&\implies u_{1} u_{2} \dots u_{k} & \text{ is a shortest path from } s \text{ to } u_{k} \text{ (by Lemma 1)} \\
+&\implies u_{1} u_{2} \dots u_{k-1} & \text{ is a shortest path from } s \text{ to } u_{k-1} \\
+&\implies \delta(s, u_{k-1}) + w(u_{k-1}, u_{k}) = \delta(s, u_{k}) \\
+&\implies d[u_{k}] \leq \delta(s,u_{k}) \\
+&\implies d[u_{k}] \leq \delta(s,u_{k}) + l(p_{k,h}) & (\forall e \in E, w(e) \geq 0 \implies l(p_{k,h}) \geq 0) \\
+&\implies d[u_{k}] \leq \delta(s,z) & (\delta(s,z) = \delta(s,u_{k}) + l(p_{k,h})) \\
+&\implies d[u_{k}] < d[z]
+\end{align}
+$$
+
+However, when $z$ was removed from $Q$,
+$$
+\begin{align}
+d[z] &< d[w], \forall w \in Q \\
+\implies d[z] &< d[u_{k}] & (\because u_{k} \text{ was still in } Q)
+\end{align}
+$$
+Thus we have $d[u_{k}] < d[z]$ and $d[z] < d[u_{k}]$ (a contradiction!).
+`\end{proof}`
+
+##### Time complexity
+
+> [!theorem|*]
+> Algorithm Dijkstra runs in $O((|V| + |E|)\lg |V|)$ time.
+
+`\begin{proof}`
+Initializing the array $d[v], v \in V$, in the first two instructions takes $O(|V|)$ time.
+
+The min-priority queue $Q$ can be implemented with a min-heap. Since the min-heap can be created in $O(|V|)$ time, the third instruction takes $O(|V|)$ time.
+
+In creating the min-heap, we can create pointers $ptr[v]$ pointing at the node of $v$ in $Q$, for every $v \in V$, without affecting the $O(|V|)$ time bound (these pointers allow us to locate the node $v$ in $Q$ in $O(1)$ time in order to perform the `fixheap` operation on $v$).
+
+Extracting the vertex with the smallest $d[\cdot]$ value from $Q$ takes $O(\lg n)$ time (heapsort). Each extract-min operation thus takes $O(\lg n)$ time.
+
+Updating a $d[v]$ in the for each loop can be accomplished as follows:
+- update $d[v]$ with $d[u] + w(u,v)$
+- use $ptr[v]$ to locate the node of $v$ in the min-heap
+- if $d[v] < d[parent(v)]$, then move $v$ upward along the root-to-$v$ path until a node at which the heap property is satisfied or the root is reached. Adjust the affected $ptr[\cdot]$'s accordingly.
+The above steps can be done in $O(\lg |V|)$ time. Hence, updating a $d[v]$ value can be done in $O(\lg |V|)$ time.
+
+For each iteration of the while loop, the instruction involving the extract-min operation takes $O(\lg |V|)$ time.
+
+The for each loop is iterated once for each edge $e = (u,v)$. Since there are $deg_{G}(u)$ such edges $e$, the for each loop is executed $deg_{G}(u)$ times. The body of the for each loop takes $O(\lg |V|)$ time as it involves an update operation. Thus the for each loop takes $deg_{G}(u)O(\lg |V|)$ time.
+
+The body of the while loop thus takes $O(\lg |V|) + \deg_{G}(u)O(\lg |V|)$ time. Since each vertex $u$ is removed from $Q$ once, and each edge $e=(u,v)$ is examined once at vertex $u$, the while loop thus takes
+$$
+\begin{align}
+\sum_{u \in V} \left( O(\lg |V|) + \deg_{G}(u)O(\lg |V|) \right) &= O\left( \sum_{u \in V} \lg |V| \right) + O\left( \sum_{u \in V} \deg_{G}(u) \lg |V| \right) \\
+&= O(|V|\lg |V|) + O(|E|\lg |V|) \\
+&= O((|V| + |E|)\lg V) \text{ time.}
+\end{align}
+$$
+
+Therefore, Algorithm Dijkstra runs in $O(|V|) + O(|V|) + O((|V| + |E|)\lg |V|)=O((|V| + |E|)\lg |V|)$ time.
+`\end{proof}`

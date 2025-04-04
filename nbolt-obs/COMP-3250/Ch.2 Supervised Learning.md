@@ -328,7 +328,6 @@ These features can be extracted using `tree.feature_importances_`.
 
 # Ensembles
 
-
 ## Random Forests
 
 A random forest is essentially just a collection of different [[#Decision Trees]]. 
@@ -389,11 +388,11 @@ Gradient boosted trees often use very shallow trees (depth ~ 1 to 5), which make
 
 - Requires careful tuning of parameters
 - Training time is long
-- Does not work well with high-dimensional, sparse data (just like other tree-based models
+- Does not work well with high-dimensional, sparse data (just like other tree-based models)
 
 
 
-## Kernelized Support Vector Machines
+# Kernelized Support Vector Machines
 
 (Note we will only discuss this for classification purposes)
 
@@ -411,7 +410,7 @@ Predictions are made by using the distance to each support vector and the import
 $$
 k_{\text{rbf}}(x_{1},x_{2}) = \exp(\gamma || x_{1} - x_{2}||^{2})
 $$
-With $\gamma$ being a constant controlling the width of the kernel.
+With $\gamma$ being a constant controlling the width of the kernel (this is literally just a [[Gaussian Function|Gaussian]]).
 
 
 ### Important Parameters
