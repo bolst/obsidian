@@ -5,3 +5,4 @@
 4. [[Ch.3 Order Statistics]]
 5. [[Ch.5 Advanced Design Techniques]]
 6. [[Ch.6 Graph Algorithms]]
+7. [[Ch.8 NP-Completeness]]
