@@ -144,3 +144,95 @@ Since $T_{DFS}$ is connected and cycle-free, it is thus a tree.
 > [!definition|*] Problem
 > Given an undirected graph $G=(V,E)$, determine all the connected components of $G$.
 
+We can use a DFS to find all connected components of an undirected graph. The idea is as follows:
+
+Choose a vertex $v$ of $G$ and invoke $DFS(v)$. When DFS returns to $v$, the connected component containing $v$ is identified. If there is a vertex $u$ that has not been visited, then invoke $DFS(u)$. When DFS returns to $u$, another connected component is found. Repeat until no vertex is unvisited.
+
+```python
+Algorithm Connect
+Input: An undirected graph G=(V,E) represented by an adjacency list L[1 ... n]
+Output: Vertex sets of the connected components of G
+begin
+	for v := 1 to n do
+		mark v as visited
+	comp := 0
+	for v := 1 to n do
+		if v is unvisited then
+			comp := comp + 1
+			DFS(v)
+end
+```
+
+and we modify DFS as follows
+
+```python
+begin
+	label(v) := comp
+	mark v as visited
+	ptr := L[v]
+	while ptr != null do
+		w := ptr.vertex
+		if w is unvisited then
+			DFS(w)
+		ptr := ptr.next
+```
+
+This takes $O(|V| + |E|)$ time, since DFS takes $O(|V_{i}| + |E_{i}|)$ for each $G_{i}$.
+
+
+# 6.5 Biconnectivity
+
+> [!definition|*]
+> Let $G=(V,E)$ be a connected graph. A vertex $v \in V$ is a **cut-vertex** of $G$ if removing $v$ from $G$ results in a disconnected graph. 
+> 
+> $G$ is **biconnected** if $G$ has no cut-vertex. 
+> 
+> A **biconnected component** of $G$ is a maximal biconnected subgraph of $G$.
+
+> [!definition|*] Problem
+> Given a connected undirected graph $G=(V,E)$, determine all the biconnected components of $G$.
+
+```python
+Algorithm Biconnect
+Input: a connected undirected graph G=(V,E)
+Output: The edge set for each biconnected component of G
+begin
+	for i := 1 to n do
+		mark v[i] as unvisited
+	count := 1
+	empty the stack
+	DFSBi(r)
+end
+```
+
+```python
+Procedure DFSBi(v)
+begin
+	mark v as visited
+	dfs(v) := count
+	count := count + 1
+	
+	low(v) := dfs(v)
+	ptr := L[v]
+	
+	while ptr != null do
+		w := ptr.vertex
+		if w is unvisited and dfs(w) < dfs(v) and parent(v) != w then
+			push {v,w} onto the stack
+		if w is unvisited then
+			parent(w) := v
+			DFSBi(w)
+			if low(w) >= dfs(v) then
+				do
+					e := pop(stack)
+					print e
+				while e != {v,w}
+			else
+				low(v) := min( low(v), low(w) )
+		else if w != parent(v) then
+			low(v) := min( low(v), dfs(w) )
+		ptr := ptr.next
+end
+```
+
+This takes $O(|V| + |E|)$ time due to DFS.

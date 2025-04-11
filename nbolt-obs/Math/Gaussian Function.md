@@ -1,3 +1,6 @@
+[[_Mathematics]]
+
+# Definition
 
 > [!definition|*] Gaussian Function
 > Let $a,b,c$ be real constants with $c \neq 0$. A **Gaussian function**, often referred to as a **Gaussian**, is any function of the base form $f(x) = \exp (-x^{2})$ and parametric extension

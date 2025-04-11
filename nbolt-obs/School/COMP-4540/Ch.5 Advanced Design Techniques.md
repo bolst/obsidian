@@ -13,7 +13,7 @@ When the smaller problems are *not independent*, the divide-and-conquer techniqu
 
 **Dynamic Programming** solves every smaller problem just once, and then saves the result in a table. The solution will be retrieved when the same subproblem is encountered later on, which avoids the redundant work of recomputing the same solution.
 
-Dynamic programming is typically applied to [[Optimization problems|optimization problems]].
+Dynamic programming is typically applied to [[Optimization Problem|optimization problems]].
 
 
 ## 5.1.1 Matrix-chain multiplication

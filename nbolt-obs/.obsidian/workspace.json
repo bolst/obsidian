@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "COMP-4540/Ch.8 NP-Completeness.md",
+                "file": "School/COMP-4540/Ch.1 Searching an Ordered List.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Ch.8 NP-Completeness"
+              "title": "Ch.1 Searching an Ordered List"
             }
           }
         ],
@@ -75,12 +75,11 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 210.50271224975586
   },
   "right": {
     "id": "b53097b1d98735c9",
@@ -96,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "COMP-3250/Supervised Learning.md",
+                "file": "School/COMP-4540/Midterm 2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,7 +105,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Supervised Learning"
+              "title": "Backlinks for Midterm 2"
             }
           },
           {
@@ -115,12 +114,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "COMP-3250/Supervised Learning.md",
+                "file": "School/COMP-4540/Midterm 2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Supervised Learning"
+              "title": "Outgoing links from Midterm 2"
             }
           },
           {
@@ -129,13 +128,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "COMP-4540/Ch.8 NP-Completeness.md",
+                "file": "School/COMP-4540/Ch.1 Searching an Ordered List.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Ch.8 NP-Completeness"
+              "title": "Outline of Ch.1 Searching an Ordered List"
             }
           },
           {
@@ -181,43 +180,47 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "611392b9a7f4a72a",
+  "active": "0e28441d75e03b40",
   "lastOpenFiles": [
-    "COMP-4540/Ch.6 Graph Algorithms.md",
-    "COMP-4540/Ch.8 NP-Completeness.md",
-    "COMP-4540/Ch.5 Advanced Design Techniques.md",
-    "COMP-4540/_Design and Analysis of Computer Algorithms.md",
-    "COMP-4540/Ch.3 Order Statistics.md",
-    "COMP-4540/Midterm 2.md",
+    "School/COMP-4540/Midterm 2.md",
+    "School/COMP-4540/_Design and Analysis of Computer Algorithms.md",
+    "School/COMP-4540/Midterm 1.md",
+    "School/COMP-4540/Ch.0 Introduction.md",
+    "CS/Computational Complexity Theory/NP-completeness.md",
+    "School/COMP-4540/Ch.8 NP-Completeness.md",
+    "School/COMP-4540/Ch.3 Order Statistics.md",
+    "School/COMP-4540/Ch.2 Sorting.md",
+    "School/COMP-4540/Ch.1 Searching an Ordered List.md",
+    "School/COMP-4540/Ch.6 Graph Algorithms.md",
+    "CS/Boolean Satisfiability Problem (SAT).md",
+    "CS/Computational Complexity Theory/_Computational Complexity Theory.md",
+    "CS/Computational Complexity Theory/Decision Problem.md",
+    "Math/Optimization Problem.md",
+    "School/COMP-4540/Ch.5 Advanced Design Techniques.md",
+    "Math/Gaussian Function.md",
+    "Math/_Mathematics.md",
+    "CS/Computational Complexity Theory",
+    "Math",
+    "CS/Computational Complexity Theory",
+    "CS/Untitled.md",
+    "CS",
+    "School",
     "Shor.md",
     "COMP-4540/Midterm 2 Review.md",
-    "COMP-4540/Midterm 1.md",
-    "COMP-3250/Ch.2 Supervised Learning.md",
-    "COMP-3300/Ch.7 Synchronization Examples.md",
-    "COMP-3300/Ch.8 Deadlocks.md",
-    "COMP-3300/Ch.5 CPU Scheduling.md",
-    "COMP-3300/Ch.6 Synchronization Tools.md",
-    "COMP-4540/Ch.0 Introduction.md",
-    "COMP-4540/Ch.2 Sorting.md",
-    "Untitled",
-    "Gaussian Function.md",
-    "COMP-3250/Ch.3 Unsupervised Learning.md",
-    "Optimization problems.md",
-    "COMP-3250/_Data Analytics I.md",
-    "COMP-3300/Midterm 1 Review.md",
-    "COMP-3300/Quiz 1.md",
+    "School/COMP-3250/Ch.2 Supervised Learning.md",
+    "School/COMP-3300/Ch.7 Synchronization Examples.md",
+    "School/COMP-3300/Ch.8 Deadlocks.md",
+    "School/COMP-3300/Ch.5 CPU Scheduling.md",
+    "School/COMP-3300/Ch.6 Synchronization Tools.md",
+    "School/COMP-3250/Ch.3 Unsupervised Learning.md",
     "_img/rag-nodeadlock.png",
     "_img/rag-deadlock.png",
     "_img",
-    "COMP-3300/_Operating System Fundamentals.md",
-    "COMP-4540/Ch.1 Searching an Ordered List.md",
-    "Optimal tour.md",
-    "optimization problems.md",
-    "COMP-3300",
+    "School/COMP-3300",
     "Untitled.canvas",
-    "COMP-3250",
+    "School/COMP-3250",
     "Untitled 2.canvas",
-    "COMP-4540",
+    "School/COMP-4540",
     "Untitled 1.canvas",
     "comp3540"
   ]

@@ -66,7 +66,7 @@ As the comparison clearly can be done in polynomial time, the lemma thus follows
 > [!NOTE]
 > Optimization problems are no easier to solve efficiently than there corresponding decision problems.
 
-Therefore, without loss of generality, we may centre the theory of NP-completeness around decision problems. Thus we can make a definition.
+Therefore, without loss of generality, we may centre the theory of [[NP-completeness]] around decision problems. Thus we can make a definition.
 
 > [!definition|*]
 > The complexity class $\mathbf{P}$ is the set of all decision problems that are solvable in polynomial time.
@@ -368,3 +368,107 @@ graph TD
 
 
 `\end{proof}`
+
+
+
+# 8.7 Coping with NP-complete/hard problems
+
+A decision problem is NP-complete (or an optimization problem is NP-hard) indicates that it is *highly unlikely* that we can find a *polynomial-time algorithm* solving that problem.
+
+Suppose you are given a problem that has no known polynomial-time algorithm solving it (regardless of whether it is NP-complete/hard), and whose practical application is so important that you must find an efficient algorithm solving it. How would you handle such a situation?
+
+There are several possible approaches.
+
+## Hoping for the best
+
+This involves developing the most efficient exponential-time algorithm for the problem.
+- If the actual input sizes are small, the execution time of the exponential-time algorithm may be acceptable
+- Since the time complexity derived for the algorithm is a *worst-case* measure, the (worst-case) inputs that make the performance of the algorithm to be unacceptable may never occur in practice
+  (For example, the *simplex* method algorithm used in Linear Programming has an exponential worst-case time complexity, but has had an excellent record in solving problem instances quickly in practice)
+
+
+## Study the inputs
+
+Perform an empirical study on the problem to find out the set of inputs which occur usually in practice. Design an algorithm which works well for that set of inputs.
+
+For instance, some graph-theoretic problems are NP-hard but if the input is restricted to planar or interval graphs, polynomial-time algorithms solving them do exist. To make use of these algorithms, one would have to design recognizing algorithms. A *recognizing algorithm* for a class of graphs outputs a "yes" if the input graph is in the class, and "no" otherwise.
+
+
+## Backtracking
+
+**Backtracking** is a method that can be used when we want to solve an NP-complete decision problem, or to find *all* feasible solutions of an NP-hard optimization problem.
+
+Conceptually, the method traverses a *labeled rooted tree* $T_{I}$ associated with the given (input) instance $I$.
+
+The tree $T_{I}$, called a *solution space tree*, represents the solution space of $I$. There are two types of solution space trees: *static* and *dynamic*. We shall consider the former type below.
+- At level $k, 0 \leq k < n$, every vertex $v$ is associated with a distinct $k$-tuple $(s_{1}, s_{2}, \dots, s_{k})$, where $s_{i} \in S_{i}, 1 \leq i \leq k$, such that each $S_{i}$ is a finite set and vertex $v$ has $|S_{k+1}|$ children each of which is associated with a distinct $(k+1)$-tuple $(s_{1},s_{2}, \dots, s_{k+1})$, where $s_{k+1} \in S_{k+1}$.
+- A $k$-tuple represents a partial solution of $I$, if it is associated with an internal vertex, and represents a complete solution (may or may not be feasible) if it is associated with a leaf.
+
+Notice that $T_{I}$ is not explicitly constructed. So, conceptually, a backtracking algorithm starts from the root of $T_{I}$ and performs a depth-first search over the three. At each internal vertex $v$, if $v$ is on level $k$, then a partial solution $(s_{1},s_{2},\dots,s_{k})$ has been determined at $v$.
+
+The algorithm would try and extend the partial solution by appending an element $a \in S_{k+1}$ to it. If it can be determined that the resulting tuple $(s_{1},s_{2}, \dots , s_{k}, a)$ is not potentially extensible to a feasible solution for $I$, then the algorithm will try again with another element $b \in S_{k+1}$.
+
+If there is no other element $b$ in $S_{k+1}$, then the last element $s_{k}$ in the partial solution is removed from $(s_{1},s_{2},\dots, s_{k})$.
+
+On the other hand, if $(s_{1},s_{2},\dots,s_{k},a)$ is potentially extensible to a feasible solution for $I$, then the search advances to the child associated with $(s_{1},s_{2},\dots,s_{k},a)$.
+
+When the search reaches a leaf corresponding to an $n$-tuple $(s_{1},s_{2},\dots, s_{n})$, if it is a feasible solution for $I$, then it is added to the set of feasible solutions found so far, or is used to update the best solution found so far if $I$ is an instance of an optimization problem.
+
+Notice that the algorithm essentially performs an *exhaustive search* over the solution space of $I$ although it may not traverse the entire $T_{I}$. As a consequence,
+- the algorithm has a worst-case exponential time complexity
+- the algorithm will always find the set of all feasible solutions, or an optimal solutions
+
+
+## Branch and bound
+
+This method is based on backtracking. The key idea is to speed up backtracking by maintaining a lower (upper, respectively) bound on the optimal cost of the given maximization (minimization) problem so that when the search reaches a vertex $v$, if one can determine that no feasible solution within $T_{v}$ has a cost higher (lower) than the lower (upper) bound, then $T_{v}$ contains no optimal solution.
+
+As a result, the search can immediately backtrack to the parent of $v$. In this way, the time that is needed to traverse $T_{v}$ is saved.
+
+
+## Lower the worst-case exponential-time complexity
+
+Design an algorithm with a *slowly increasing* worst-case exponential-time complexity. This time complexity is substantially smaller than that of the brute force method.
+
+For instance, if there are $2^n$ feasible solutions for an input instance of size $n$, then a brute-force method would take $\Theta(2^n)$ time.
+
+Using this approach, we may aim at designing an algorithm that has an exponential time complexity $O(c^n)$ for some $1<c<2$.
+
+Although an algorithm with an $O(c^n)$ time complexity is still an exponential algorithm, the largest input size it could handle *in practice* could be significantly larger than that of any algorithm based on a brute force method.
+
+Similarly, for optimization problems that have $n!$ feasible solutions for input size $n$, we may aim at designing an algorithm that has exponential time complexity $O(2^n)$ (notice $2^n \in o(n!)$).
+
+
+## Parameterized complexity
+
+The basic idea is to look for a parameter $k$ to design an algorithm that has a polynomial-time complexity in the input size $n$ but not in the value of $k$.
+
+An algorithm with such time complexity is called a **parameterized polynomial-time algorithm**.
+
+For small $k$ values, the time complexity could be polynomial.
+
+For example consider $O(2^{k^{2}}n^2)$. For $k=\sqrt{ \lg n }, O(2^{k^{2}}n^{2})=O(n^3)$ which is polynomial. For $k=\sqrt{ n }, O(2^{k^{2}}n^{2}) = O(2^n n^{2})$ which is exponential.
+
+If most of the *actual* problem instances (inputs) of the optimization problem under consideration have reasonably small values for the parameter $k$, then we have an efficient algorithm for the problem.
+
+Notice that based on $k$, we can partition the set of all input instances of an optimization problem into disjoint classes so that the problems belonging to the same class have the same/similar $k$ values, indicating they may have similar computational hardness.
+
+## Local search
+
+In contrast with branch and bound, the local search method *does not* search the entire solution space but a restricted area only.
+
+Therefore it may not find an optimal solution, but a local optimum because the restricted area it searches for may contain no optimal solution. To compensate, the local search method is usually very efficient.
+
+To design a local search algorithm, one has to first define a local transformation on the set of all feasible solutions $M(I)$ of the input instance $I$. The local transformation converts one feasible solution to another feasible solution by making some local (small) changes to the specification of the formal.
+
+Conceptually, the local transformation creates a graph $G_{M(I)} = (M(I), E)$ such that $\forall s,s' \in M(I), (s,s') \in E \iff$ there is a local transformation from $s$ to $s'$.
+
+Then the local search algorithm starts from a vertex (feasible solution) $s$ of $G_{M(I)}$ and moves to an adjacent vertex (feasible solution) $s'$ via an edge $(s,s')$ such that
+$$
+\begin{cases}
+cost (s') < cost (s) & \text{for minimization problem} \\
+cost (s') > cost (s) & \text{for maximization problem}
+\end{cases} 
+$$
+Next, $s'$ becomes $s$ and the above step is repeated. The search halts at a vertex where there is no adjacent vertex with improved cost value. This may or may not be an optimal solution.
+

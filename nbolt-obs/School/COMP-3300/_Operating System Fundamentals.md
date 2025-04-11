@@ -1,6 +1,6 @@
 
 
-1. [[COMP-3300/Ch.1 Introduction]]
+1. [[School/COMP-3300/Ch.1 Introduction]]
 2. [[Ch.2 Operating System Services]]
 3. [[Ch.3 Processes]]
 4. [[Ch.4 Threads & Concurrency]]
