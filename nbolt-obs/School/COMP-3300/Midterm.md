@@ -17,13 +17,12 @@ int main() {
 ```
 
 1. What will be the total number of "End" outputs?
+<br>
    
 2. Modify the code so that the topmost parent only prints "Start" and never prints "Running" or "End".
+<br>
 
-
-
-
-
+<br>
 
 Consider the following code
 
@@ -44,8 +43,10 @@ int main() {
 ```
 
 1. Write the output of the child process
+<br>
    
 2. Write the output of the parent process
+<br>
 
 
 
@@ -73,8 +74,10 @@ public class Main {
 ```
 
 1. How many threads are created in total?
+<br>
    
 2. What happens if `shutdown()` is not called?
+<br>
 
 
 
@@ -101,14 +104,17 @@ int main() {
 ```
 
 1. Write the output, assuming all threads execute successfully
+<br>
 
 
 
 2. Would the output pattern (possibly) change if we do not use the `pthread_join()` function call?
+<br>
 
 
 
 Identify true/false for the following:
+
 1. Threads within the same process share the same address space and resources.
 2. In a multiprogramming system, multiple programs execute at exactly the same time on a single processor.
 3. Kernel mode allows unrestricted access to all machine instructions.
@@ -117,6 +123,7 @@ Identify true/false for the following:
 
 
 Choose the correct option in each of the following:
+
 1. Which OS structure consists of multiple layers, each building upon the previous one?
 	1. Monolithic
 	2. Layer
@@ -156,7 +163,9 @@ Consider the following processes
 
 1. Draw a Gantt Chart using FCFS
 
+<br>
 
+<br>
 
 2. Write the waiting time for each process using FCFS
 	1. P1:
@@ -164,9 +173,12 @@ Consider the following processes
 	3. P3:
 	4. P4:
 	5. P5:
+<br>
 
 3. Draw a Gantt Chart using SJF (non-preemptive)
+<br>
    
+<br>
    
 4. Write the waiting time for each process using SJF (non-preemptive)
 	1. P1:
@@ -174,20 +186,35 @@ Consider the following processes
 	3. P3:
 	4. P4:
 	5. P5:
+<br>
 
-5. Draw a Gantt Chart using RR with $q=5$
-
-
-6. Write the turnaround time for each process using RR with $q=5$
+5. Write the turnaround time for each process using SJF (non-preemptive)
 	1. P1:
 	2. P2:
 	3. P3:
 	4. P4:
 	5. P5:
 
+<br>
 
-7. Which has a lower average waiting time out of FCFS and SJF?
+6. Draw a Gantt Chart using RR with $q=5$
+<br>
+<br>
+
+
+7. Write the turnaround time for each process using RR with $q=5$
+	1. P1:
+	2. P2:
+	3. P3:
+	4. P4:
+	5. P5:
+
+<br>
+
+8. Which has a lower average waiting time out of FCFS and SJF?
+<br>
    
-8. Which of the algorithms is prone to the Convoy Effect?
+9. Which of the algorithms is prone to the Convoy Effect?
+<br>
    
-9. Which has a better average turnaround time out of SJF and RR?
+10. Which has a better average turnaround time out of SJF and RR?

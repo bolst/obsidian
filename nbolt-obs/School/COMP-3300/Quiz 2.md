@@ -9,8 +9,11 @@ Consider the following set of processes.
 | P4      | 3        | 4          |
 | P5      | 2        | 8          |
 
-1. Draw the Gantt Chart using Priority Scheduling with Round Robin.
+1. Draw the Gantt Chart using Priority Scheduling with Round Robin ($q=4$).
 
+<br>
+<br>
+<br>
 
 
 2. Write the waiting and turnaround time for each process using the same algorithm.
@@ -60,7 +63,7 @@ signal(S2);
 
 
 4. Choose the correct option from the following:
-	1. What does a producer to when the buffer is full in the producer-consumer problem?
+	1. What does a producer do when the buffer is full in the producer-consumer problem?
 		1. Discards new items
 		2. Forces the consumer to remove an item
 		3. Waits until space is available

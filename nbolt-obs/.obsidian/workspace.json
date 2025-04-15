@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "School/COMP-3300/Midterm.md",
+                "file": "School/COMP-3300/Exam Review.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Midterm"
+              "title": "Exam Review"
             }
           }
         ],
@@ -129,13 +129,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "School/COMP-3300/Midterm.md",
+                "file": "School/COMP-3300/Exam Review.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Midterm"
+              "title": "Outline of Exam Review"
             }
           },
           {
@@ -184,12 +184,18 @@
   },
   "active": "b5f809d8b3eab893",
   "lastOpenFiles": [
+    "School/COMP-3300/Ch.3 Processes.md",
+    "School/COMP-3300/Ch.2 Operating System Services.md",
+    "School/COMP-3300/Ch.1 Introduction.md",
+    "School/COMP-3300/Exam Review.md",
     "School/COMP-3300/Quiz 2.md",
+    "School/COMP-3300/Ch.8 Deadlocks.md",
+    "School/COMP-3300/Ch.4 Threads & Concurrency.md",
+    "School/COMP-3300/Ch.5 CPU Scheduling.md",
+    "School/COMP-3300/Ch.6 Synchronization Tools.md",
+    "School/COMP-3300/Ch.7 Synchronization Examples.md",
     "School/COMP-3300/Quiz 1.md",
     "School/COMP-3300/Midterm.md",
-    "School/COMP-3300/Exam Review.md",
-    "School/COMP-3300/Ch.5 CPU Scheduling.md",
-    "School/COMP-3300/Ch.8 Deadlocks.md",
     "School/COMP-3300/Midterm 1 Review.md",
     "School/COMP-4540/Ch.2 Sorting.md",
     "School/COMP-4540/Ch.1 Searching an Ordered List.md",
@@ -204,17 +210,11 @@
     "CS/Boolean Satisfiability Problem (SAT).md",
     "CS/Computational Complexity Theory/_Computational Complexity Theory.md",
     "CS/Computational Complexity Theory/Decision Problem.md",
-    "Math/Optimization Problem.md",
-    "School/COMP-4540/Ch.5 Advanced Design Techniques.md",
-    "Math/Gaussian Function.md",
-    "Math/_Mathematics.md",
     "CS/Computational Complexity Theory",
     "Math",
     "CS/Computational Complexity Theory",
-    "CS/Untitled.md",
     "CS",
     "School",
-    "Shor.md",
     "_img/rag-nodeadlock.png",
     "_img/rag-deadlock.png",
     "_img",
