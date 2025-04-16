@@ -79,8 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "b53097b1d98735c9",
@@ -168,8 +167,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -184,18 +182,19 @@
   },
   "active": "b5f809d8b3eab893",
   "lastOpenFiles": [
+    "School/COMP-3300/Ch.8 Deadlocks.md",
+    "School/COMP-3300/Ch.6 Synchronization Tools.md",
+    "School/COMP-3300/Ch.5 CPU Scheduling.md",
+    "School/COMP-3300/Ch.4 Threads & Concurrency.md",
+    "School/COMP-3300/Exam Review.md",
     "School/COMP-3300/Ch.3 Processes.md",
+    "School/COMP-3300/Quiz 2.md",
+    "School/COMP-3300/Midterm.md",
+    "School/COMP-3300/Quiz 1.md",
+    "_img/Screenshot 2025-04-15 at 1.52.04 PM.png",
     "School/COMP-3300/Ch.2 Operating System Services.md",
     "School/COMP-3300/Ch.1 Introduction.md",
-    "School/COMP-3300/Exam Review.md",
-    "School/COMP-3300/Quiz 2.md",
-    "School/COMP-3300/Ch.8 Deadlocks.md",
-    "School/COMP-3300/Ch.4 Threads & Concurrency.md",
-    "School/COMP-3300/Ch.5 CPU Scheduling.md",
-    "School/COMP-3300/Ch.6 Synchronization Tools.md",
     "School/COMP-3300/Ch.7 Synchronization Examples.md",
-    "School/COMP-3300/Quiz 1.md",
-    "School/COMP-3300/Midterm.md",
     "School/COMP-3300/Midterm 1 Review.md",
     "School/COMP-4540/Ch.2 Sorting.md",
     "School/COMP-4540/Ch.1 Searching an Ordered List.md",
@@ -209,7 +208,6 @@
     "School/COMP-4540/Ch.6 Graph Algorithms.md",
     "CS/Boolean Satisfiability Problem (SAT).md",
     "CS/Computational Complexity Theory/_Computational Complexity Theory.md",
-    "CS/Computational Complexity Theory/Decision Problem.md",
     "CS/Computational Complexity Theory",
     "Math",
     "CS/Computational Complexity Theory",

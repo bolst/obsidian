@@ -19,19 +19,19 @@ int main() {
 ```
 
 1. How many processes will be created?
-<br>
+
    
 2. How many times will "Hello" be outputted?
-<br>
+
    
 3. Is the output order guaranteed to be the same every time the program runs?
-<br>
+
    
 4. If the first `fork()` returns 123 to the parent, what is the PID of the newly created child?
-<br>
+
    
 5. What will be the total number of "Hello" outputs if we add `wait(NULL)` after each `fork()` call?
-<br>
+
 
 
 ## Question 1.2
@@ -62,19 +62,19 @@ int main() {
 
 1. Write the output, assuming the PID of the child is 100.
    
-<br>
-<br>
+
+
    
    
    
 2. How many processes will be created?
-<br>
+
    
 3. If we assign the `p`-value to a pointer and modify it, will it affect the program's output?
-<br>
+
    
 4. What happens to the process if `wait(NULL)` is not used (orphan or zombie)?
-<br>
+
 
 
 # Part 2 (T/F)
