@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "School/COMP-3300/Exam Review.md",
+                "file": "School/COMP-3250/Ch.4 Representing Data and Feature Engineering.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Exam Review"
+              "title": "Ch.4 Representing Data and Feature Engineering"
             }
           }
         ],
@@ -79,7 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 269.51103591918945
   },
   "right": {
     "id": "b53097b1d98735c9",
@@ -128,13 +128,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "School/COMP-3300/Exam Review.md",
+                "file": "School/COMP-3250/Ch.4 Representing Data and Feature Engineering.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Exam Review"
+              "title": "Outline of Ch.4 Representing Data and Feature Engineering"
             }
           },
           {
@@ -182,11 +182,15 @@
   },
   "active": "b5f809d8b3eab893",
   "lastOpenFiles": [
+    "School/COMP-3250/Ch.3 Unsupervised Learning.md",
+    "School/COMP-3250/Ch.4 Representing Data and Feature Engineering.md",
+    "School/COMP-3250/_Data Analytics I.md",
+    "School/COMP-3250/Ch.2 Supervised Learning.md",
+    "School/COMP-3300/Exam Review.md",
     "School/COMP-3300/Ch.8 Deadlocks.md",
     "School/COMP-3300/Ch.6 Synchronization Tools.md",
     "School/COMP-3300/Ch.5 CPU Scheduling.md",
     "School/COMP-3300/Ch.4 Threads & Concurrency.md",
-    "School/COMP-3300/Exam Review.md",
     "School/COMP-3300/Ch.3 Processes.md",
     "School/COMP-3300/Quiz 2.md",
     "School/COMP-3300/Midterm.md",
@@ -205,9 +209,6 @@
     "CS/Computational Complexity Theory/NP-completeness.md",
     "School/COMP-4540/Ch.8 NP-Completeness.md",
     "School/COMP-4540/Ch.3 Order Statistics.md",
-    "School/COMP-4540/Ch.6 Graph Algorithms.md",
-    "CS/Boolean Satisfiability Problem (SAT).md",
-    "CS/Computational Complexity Theory/_Computational Complexity Theory.md",
     "CS/Computational Complexity Theory",
     "Math",
     "CS/Computational Complexity Theory",
